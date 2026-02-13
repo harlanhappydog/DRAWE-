@@ -850,3 +850,32 @@ cat("\ncauchit Link:\n")
 print(round(KS4_cauchit$results, 3))
 xtable(round(KS4_cauchit$results, 3), digits=3)
 
+ ################################################################################
+# Maximum MCSE across all scenarios
+################################################################################
+
+# Collect all MCSE values
+all_MCSE_bias <- c(KS1_logit$MCSE_bias, KS2_logit$MCSE_bias, KS3_logit$MCSE_bias, KS4_logit$MCSE_bias,
+                   KS1_cauchit$MCSE_bias, KS2_cauchit$MCSE_bias, KS3_cauchit$MCSE_bias, KS4_cauchit$MCSE_bias)
+
+all_MCSE_ESE <- c(KS1_logit$MCSE_ESE, KS2_logit$MCSE_ESE, KS3_logit$MCSE_ESE, KS4_logit$MCSE_ESE,
+                  KS1_cauchit$MCSE_ESE, KS2_cauchit$MCSE_ESE, KS3_cauchit$MCSE_ESE, KS4_cauchit$MCSE_ESE)
+
+all_MCSE_CIcov <- c(KS1_logit$MCSE_CIcov, KS2_logit$MCSE_CIcov, KS3_logit$MCSE_CIcov, KS4_logit$MCSE_CIcov,
+                    KS1_cauchit$MCSE_CIcov, KS2_cauchit$MCSE_CIcov, KS3_cauchit$MCSE_CIcov, KS4_cauchit$MCSE_CIcov)
+
+# Calculate maxima
+max_MCSE_bias <- max(all_MCSE_bias, na.rm = TRUE)
+max_MCSE_ESE <- max(all_MCSE_ESE, na.rm = TRUE)
+max_MCSE_CIcov <- max(all_MCSE_CIcov, na.rm = TRUE)
+
+# Print results
+cat("\n\n========================================\n")
+cat("MAXIMUM MCSE ACROSS ALL SCENARIOS\n")
+cat("========================================\n\n")
+n_sample
+cat("Max MCSE_bias:  ", round(max_MCSE_bias, 4), "\n")
+cat("Max MCSE_ESE:   ", round(max_MCSE_ESE, 4), "\n")
+cat("Max MCSE_CIcov: ", round(max_MCSE_CIcov, 4), "\n")
+
+
