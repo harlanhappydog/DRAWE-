@@ -4,7 +4,9 @@ logit<-function(x){log(x/(1-x))}
 
 library(pbapply)
 library(mvtnorm)
-
+library(boot)
+library(ggplot2)
+library(xtable)
 
 
 ITC_estimates <- function(Y_all, X_all, S_all, IPD_for_Study0=TRUE, M=10000, boot_n=1000){
